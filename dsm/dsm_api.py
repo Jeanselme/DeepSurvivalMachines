@@ -318,6 +318,15 @@ class DSMBase():
                       "model using the `fit` method on some training data " +
                       "before calling `predict_survival`.")
 
+  def predict_alphas(self, x):
+    x = self._preprocess_test_data(x)
+    if self.fitted:
+      _, _, alphas = self.torch_model(x)
+      return torch.softmax(alphas, dim = 1).detach().cpu().numpy()
+    else:
+      raise Exception("The model has not been fitted yet. Please fit the " +
+                      "model using the `fit` method on some training data " +
+                      "before calling `predict_alphas`.")
 
 class DeepSurvivalMachines(DSMBase):
   """A Deep Survival Machines model.
