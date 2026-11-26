@@ -148,7 +148,7 @@ def _load_pbc_dataset(sequential, competing = False):
                   'spiders', 'edema', 'histologic']]
   dat_num = data[['serBilir', 'serChol', 'albumin', 'alkaline',
                   'SGOT', 'platelets', 'prothrombin']]
-  age = data['age'] + data['years']
+  age = data['age'] + data['year']
 
   x1 = pd.get_dummies(dat_cat)
   x2 = dat_num
